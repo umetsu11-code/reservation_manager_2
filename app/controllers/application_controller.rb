@@ -1,2 +1,4 @@
 class ApplicationController < ActionController::Base
-end
+    # ユーザーが認証されているかを確認する
+    before_action :authenticate_user!
+  end
