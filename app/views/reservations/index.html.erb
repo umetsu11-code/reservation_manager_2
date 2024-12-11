@@ -1,0 +1,32 @@
+<h2 class="text-center my-4">予約済み一覧</h2>
+
+<div class="row">
+  <% @reservations.each do |reservation| %>
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card">
+        <!-- 施設画像 -->
+        <% if reservation.room.image_url.present? %>
+          <img src="<%= reservation.room.image_url %>" alt="<%= reservation.room.name %>" class="card-img-top">
+        <% else %>
+          <%= image_tag 'default-image-4e0ac6b8d01335b5b22fe6586af13644ae51dddb6aeabf35b9174e80f13cd09d', alt: reservation.room.name, class: "card-img-top" %>
+        <% end %>
+
+        <div class="card-body">
+          <!-- 施設情報 -->
+          <h5 class="card-title"><%= reservation.room.name %></h5>
+          <p class="card-text"><strong>紹介文:</strong> <%= reservation.room.description %></p>
+          <p class="card-text"><strong>合計料金:</strong> <%= reservation.total_price %>円</p>
+          <p class="card-text"><strong>チェックイン:</strong> <%= reservation.check_in_date %></p>
+          <p class="card-text"><strong>チェックアウト:</strong> <%= reservation.check_out_date %></p>
+          <p class="card-text"><small class="text-muted">予約確定日時: <%= reservation.created_at.strftime("%Y-%m-%d %H:%M:%S") %></small></p>
+        </div>
+
+        <div class="card-footer text-center">
+          <!-- 削除ボタン -->
+          <%= button_to "予約を削除", reservation_path(reservation), method: :delete, data: { confirm: "本当にこの予約を削除しますか？" }, class: "btn btn-danger w-100" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+

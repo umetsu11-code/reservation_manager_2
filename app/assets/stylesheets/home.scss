@@ -1,0 +1,100 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.FirstView {
+    background-image: asset-url("test2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+    height: 460px;
+    margin-bottom: 80px;
+    padding-top: 60px;
+}
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    width: 100%;
+    padding-right: var(--bs-gutter-x, .75rem);
+    padding-left: var(--bs-gutter-x, .75rem);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.FirstView__title {
+    font-size: 34px;
+    line-height: 41px;
+    margin-bottom: 0px;
+}
+.FirstView__title {
+    color: #fff;
+    font-family: Lato, sans-serif;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 70px;
+    margin-bottom: 40px;
+    text-align: center;
+    word-break: keep-all;
+}
+.FirstViewSearch {
+    max-width: 478px;
+    padding: 16px;
+    width: 100%;
+}
+.FirstViewSearch {
+    padding: 20px;
+    width: 478px;
+}
+.FirstViewSearch {
+    background: hsla(0, 0%, 100%, .4);
+    margin: auto;
+    padding: 32px;
+    width: 704px;
+    text-align: center;
+}
+
+section {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+.RecommendAreaSection__title {
+    font-size: 24px;
+    line-height: 36px;
+    margin-bottom: 60px;
+    padding-bottom: 10px;
+}
+
+.RecommendAreas {
+    grid-gap: 16px;
+    gap: 16px;
+}
+.RecommendAreas {
+    display: flex
+;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    grid-gap: 32px;
+    gap: 32px;
+}
+.RecommendArea {
+    background-size: cover;
+    background-position: 50%;
+    border-radius: 26px;
+    display: flex
+;
+    flex-direction: column;
+    height: 455px;
+    justify-content: flex-end;
+    padding: 40px 24px;
+    width: calc(25% - 24px);
+}
+
+.RecommendAreaSection__title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+
+  }
+  
+  
+  .RecommendAreas .btn:hover {
+    background-color: #0056b3; /* ボタンのホバー色 */
+    color: #fff; /* テキスト色 */
+  }

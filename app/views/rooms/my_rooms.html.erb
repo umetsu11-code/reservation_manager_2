@@ -1,0 +1,28 @@
+<h2 class="text-center my-4">登録済み一覧</h2>
+
+<div class="row">
+  <% @rooms.each do |room| %>
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card">
+        <!-- 施設画像 -->
+        <% if room.image_url.present? %>
+          <img src="<%= room.image_url %>" alt="<%= room.name %>" class="card-img-top">
+        <% else %>
+          <%= image_tag 'default-image-4e0ac6b8d01335b5b22fe6586af13644ae51dddb6aeabf35b9174e80f13cd09d', alt: room.name, class: "card-img-top" %>
+        <% end %>
+
+        <div class="card-body">
+          <!-- 施設情報 -->
+          <h5 class="card-title"><%= link_to room.name, room_path(room), class: "text-decoration-none text-dark" %></h5>
+          <p class="card-text"><strong>紹介文:</strong> <%= room.description %></p>
+          <p class="card-text"><strong>料金:</strong> <%= room.price %>円/日</p>
+        </div>
+
+        <div class="card-footer text-center">
+          <!-- 削除ボタン -->
+          <%= button_to "施設を削除", room_path(room), method: :delete, data: { confirm: "本当にこの施設を削除しますか？" }, class: "btn btn-danger w-100" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
