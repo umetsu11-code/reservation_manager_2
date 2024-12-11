@@ -18,11 +18,11 @@
       <%= form_with model: [@room, @room.reservations.build], local: true, html: { class: "needs-validation" } do |f| %>
         <div class="mb-3">
           <%= f.label :check_in_date, "チェックイン", class: "form-label" %>
-          <%= f.date_field :check_in_date, class: "form-control", required: true %>
+          <%= f.date_field :check_in_date, class: "form-control", id: "check_in_date", required: true, min: Date.today %>
         </div>
         <div class="mb-3">
           <%= f.label :check_out_date, "チェックアウト", class: "form-label" %>
-          <%= f.date_field :check_out_date, class: "form-control", required: true %>
+              <%= f.date_field :check_out_date, class: "form-control", id: "check_out_date", required: true, min: Date.today %>
         </div>
         <div class="mb-3">
           <%= f.label :number_of_guests, "人数", class: "form-label" %>
@@ -33,6 +33,7 @@
         </div>
       <% end %>
     </div>
+    
 
     <div class="card-footer text-end">
       <%= link_to "戻る", request.referer || rooms_path, class: "btn btn-secondary" %>
