@@ -95,6 +95,56 @@ section {
   
   
   .RecommendAreas .btn:hover {
-    background-color: #0056b3; /* ボタンのホバー色 */
+ 
     color: #fff; /* テキスト色 */
   }
+
+  /* ボタン全体を画像で覆うスタイル */
+.btn-with-image {
+    position: relative;
+    width: 150px; /* 必要に応じてサイズを調整 */
+    height: 150px; /* 必要に応じてサイズを調整 */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  
+  /* 各エリアの画像を背景に設定 */
+  .btn-with-image[href*="東京"] {
+    background-image: url('<%= asset_path("tokyo.jpeg") %>');
+  }
+  
+  .btn-with-image[href*="大阪"] {
+    background-image: url('<%= asset_path("osaka.jpeg") %>');
+  }
+  
+  .btn-with-image[href*="京都"] {
+    background-image: url('<%= asset_path("kyoto.jpeg") %>');
+  }
+  
+  .btn-with-image[href*="札幌"] {
+    background-image: url('<%= asset_path("sapporo.jpeg") %>');
+  }
+  
+  /* テキストのスタイル */
+  .btn-with-image span {
+    position: absolute;
+    bottom: 10px; /* 必要に応じて調整 */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    font-size: 18px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+  }
+  
+  /* ボタンのホバー効果 */
+  .btn-with-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
