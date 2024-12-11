@@ -44,13 +44,13 @@ ActiveRecord::Schema.define(version: 2024_12_10_162153) do
 #   Unknown type 'false' for column 'default'
 
   create_table "rooms", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.integer "price"
+    t.string "name", null: false
+    t.text "description", null: false
+    t.integer "price", null: false
+    t.string "address", null: false
+    t.string "image_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "address"
-    t.string "image_url"
     t.integer "user_id"
   end
 
