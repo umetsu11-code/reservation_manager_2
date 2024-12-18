@@ -22,7 +22,7 @@
         </div>
         <div class="mb-3">
           <%= f.label :check_out_date, "チェックアウト", class: "form-label" %>
-              <%= f.date_field :check_out_date, class: "form-control", id: "check_out_date", required: true, min: Date.today %>
+          <%= f.date_field :check_out_date, class: "form-control", id: "check_out_date", required: true, min: Date.today %>
         </div>
         <div class="mb-3">
           <%= f.label :number_of_guests, "人数", class: "form-label" %>
@@ -32,6 +32,21 @@
           <%= f.submit "予約する", class: "btn btn-primary" %>
         </div>
       <% end %>
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        const checkInDate = document.getElementById("check_in_date");
+        const checkOutDate = document.getElementById("check_out_date");
+
+        // チェックイン日が変更されたときにチェックアウト日の最小値を更新
+        checkInDate.addEventListener("change", function() {
+        const selectedCheckInDate = checkInDate.value;
+        if (selectedCheckInDate) {
+        checkOutDate.min = selectedCheckInDate;
+         }
+       });
+       });
+      </script>
+
     </div>
     
 

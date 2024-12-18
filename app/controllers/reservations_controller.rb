@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
     before_action :set_room, only: [:new, :create]
-    before_action :set_reservation, only: [:show, :destroy]
+    before_action :set_reservation, only: [:show, :destroy, :confirm]
     before_action :authenticate_user!
 
     # 予約一覧
@@ -38,11 +38,15 @@ class ReservationsController < ApplicationController
         redirect_to reservations_path, notice: "予約を削除しました。"
       end
 
-      def confirm
-        if @reservation.update(confirmed: true)
-          redirect_to @reservation, notice: "予約が確定しました。"
-        end
-      end
+  # 予約確定処理
+  def confirm
+    if @reservation.update(confirmed: true)
+      redirect_to reservations_path, notice: "予約が確定しました。"
+    else
+      flash[:alert] = "予約確定に失敗しました。"
+      render :confirmation, status: :unprocessable_entity
+    end
+  end
   
 
 
@@ -53,7 +57,10 @@ class ReservationsController < ApplicationController
     end
 
     def set_reservation
-      @reservation = current_user.reservations.find(params[:id])
+        @reservation = current_user.reservations.find_by(id: params[:id])
+      unless @reservation
+        redirect_to reservations_path, alert: "予約が見つかりませんでした。"
+      end
     end
   
     def reservation_params
