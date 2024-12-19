@@ -1,0 +1,57 @@
+<div class="container mt-4">
+  <div class="card shadow-sm">
+  <!-- デフォルト画像対応 -->
+  <div class="card-img-top">
+    <% if @room.image_url.present? %>
+      <img src="<%= @room.image_url %>" alt="<%= @room.name %>" class="img-fluid w-100">
+    <% else %>
+      <%= image_tag 'default-image-4e0ac6b8d01335b5b22fe6586af13644ae51dddb6aeabf35b9174e80f13cd09d', alt: @room.name, class: "img-fluid w-100" %>
+    <% end %>
+  </div>
+
+    <div class="card-body">
+      <h3 class="card-title"><%= @room.name %></h3>
+      <p class="card-text"><strong>料金:</strong> <%= @room.price %>円/日</p>
+      <p class="card-text"><strong>住所:</strong> <%= @room.address %></p>
+      <p class="card-text"><%= @room.description %></p>
+
+      <%= form_with model: [@room, @room.reservations.build], local: true, html: { class: "needs-validation" } do |f| %>
+        <div class="mb-3">
+          <%= f.label :check_in_date, "チェックイン", class: "form-label" %>
+          <%= f.date_field :check_in_date, class: "form-control", id: "check_in_date", required: true, min: Date.today %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :check_out_date, "チェックアウト", class: "form-label" %>
+          <%= f.date_field :check_out_date, class: "form-control", id: "check_out_date", required: true, min: Date.today %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :number_of_guests, "人数", class: "form-label" %>
+          <%= f.number_field :number_of_guests, value: 1, min: 1, class: "form-control", required: true %>
+        </div>
+        <div class="d-flex justify-content-end">
+          <%= f.submit "予約する", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        const checkInDate = document.getElementById("check_in_date");
+        const checkOutDate = document.getElementById("check_out_date");
+
+        // チェックイン日が変更されたときにチェックアウト日の最小値を更新
+        checkInDate.addEventListener("change", function() {
+        const selectedCheckInDate = checkInDate.value;
+      if (selectedCheckInDate) {
+        checkOutDate.min = selectedCheckInDate;
+      }
+    });
+  });
+</script>
+
+    </div>
+    
+
+    <div class="card-footer text-end">
+      <%= link_to "戻る", request.referer || rooms_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+</div>

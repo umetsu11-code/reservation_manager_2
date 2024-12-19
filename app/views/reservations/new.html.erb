@@ -1,0 +1,22 @@
+<h2>予約内容の確認</h2>
+
+<%= form_with model: [@room, @reservation], local: true do |f| %>
+
+  <div>
+    <%= f.label :check_in_date, "チェックイン" %>
+    <%= f.date_field :check_in_date, readonly: true %>
+  </div>
+  <div>
+    <%= f.label :check_out_date, "チェックアウト" %>
+    <%= f.date_field :check_out_date, readonly: true %>
+  </div>
+  <div>
+    <%= f.label :number_of_guests, "人数" %>
+    <%= f.number_field :number_of_guests, readonly: true %>
+  </div>
+  <div>
+    <%= f.label :total_price, "お支払い金額" %>
+    <%= f.number_field :total_price, value: @reservation.total_price, readonly: true %>
+  </div>
+  <%= f.submit "予約する", class: "btn btn-primary" %>
+<% end %>
